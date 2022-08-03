@@ -11,6 +11,9 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import GoogleIcon from "@mui/icons-material/Google";
+import { signIn } from "../auth/firebase";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function Copyright(props) {
   return (
@@ -37,8 +40,13 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function Login() {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+
   const handleSubmit = (event) => {
     event.preventDefault();
+    signIn(email, password, navigate);
   };
 
   return (
@@ -74,6 +82,7 @@ export default function Login() {
               name="email"
               autoComplete="email"
               autoFocus
+              onChange={(e) => setEmail(e.target.value)}
             />
             <TextField
               margin="normal"
@@ -84,6 +93,7 @@ export default function Login() {
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={(e) => setPassword(e.target.value)}
             />
             <Button
               type="submit"
