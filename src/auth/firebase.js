@@ -2,7 +2,10 @@ import { initializeApp } from "firebase/app";
 import {
   createUserWithEmailAndPassword,
   getAuth,
+  onAuthStateChanged,
   signInWithEmailAndPassword,
+  signOut,
+  updateProfile,
 } from "firebase/auth";
 
 // TODO: Replace the following with your app's Firebase project configuration
@@ -20,7 +23,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 // Initialize Firebase Authentication and get a reference to the service
-export const createUser = async (email, password, navigate) => {
+export const createUser = async (email, password, navigate, displayName) => {
   //! new user create method firebase
 
   try {
@@ -29,6 +32,9 @@ export const createUser = async (email, password, navigate) => {
       email,
       password
     );
+    await updateProfile(auth.currentUser, {
+      displayName: displayName,
+    });
     navigate("/");
     console.log(userCredential);
   } catch (error) {
@@ -48,4 +54,20 @@ export const signIn = async (email, password, navigate) => {
   } catch (error) {
     console.log(error);
   }
+};
+
+export const userObserver = (setCurrentUser) => {
+  //? Kullanıcının signin olup olmadığını takip eden ve kullanıcı değiştiğinde yeni kullanıcıyı response olarak dönen firebase metodu
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      console.log(user);
+      setCurrentUser(user);
+    } else {
+      // User is signed out
+      setCurrentUser(false);
+    }
+  });
+};
+export const logOut = () => {
+  signOut(auth);
 };

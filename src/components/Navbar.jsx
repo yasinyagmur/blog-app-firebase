@@ -6,15 +6,14 @@ import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-// import Switch from "@mui/material/Switch";
-// import FormControlLabel from "@mui/material/FormControlLabel";
-// import FormGroup from "@mui/material/FormGroup";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
+import { logOut } from "../auth/firebase";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -54,13 +53,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function MenuAppBar() {
-  const [currentUser, setCurrentUser] = React.useState(true);
+export default function Navbar() {
+  const { currentUser } = React.useContext(AuthContext);
+  console.log(currentUser);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  // const handleChange = (event) => {
-  //   setAuth(event.target.checked);
-  // };
   const navigate = useNavigate();
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -86,7 +83,7 @@ export default function MenuAppBar() {
     setAnchorEl(null);
   };
   const handleLogout = () => {
-    navigate("/");
+    logOut();
     setAnchorEl(null);
   };
   return (
@@ -111,8 +108,12 @@ export default function MenuAppBar() {
               inputProps={{ "aria-label": "search" }}
             />
           </Search>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Photos
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{ flexGrow: 1, textAlign: "end" }}
+          >
+            {currentUser.displayName}
           </Typography>
           {!currentUser ? (
             <div>
