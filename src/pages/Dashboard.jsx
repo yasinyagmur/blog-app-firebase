@@ -1,7 +1,12 @@
 import React from "react";
+import BlogCards from "../components/BlogCards";
 
 const Dashboard = () => {
-  return <div>Dashboard</div>;
+  return (
+    <div>
+      <BlogCards />
+    </div>
+  );
 };
 
 export default Dashboard;
