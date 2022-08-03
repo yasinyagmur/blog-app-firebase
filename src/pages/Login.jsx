@@ -11,7 +11,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import GoogleIcon from "@mui/icons-material/Google";
-import { signIn } from "../auth/firebase";
+import { signIn, signUpProvider } from "../auth/firebase";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
@@ -47,6 +47,10 @@ export default function Login() {
   const handleSubmit = (event) => {
     event.preventDefault();
     signIn(email, password, navigate);
+  };
+
+  const handleProviderLogin = () => {
+    signUpProvider(navigate);
   };
 
   return (
@@ -103,7 +107,12 @@ export default function Login() {
             >
               Sign In
             </Button>
-            <Button variant="outlined" fullWidth sx={{ mb: 2 }}>
+            <Button
+              variant="outlined"
+              fullWidth
+              sx={{ mb: 2 }}
+              onClick={handleProviderLogin}
+            >
               <GoogleIcon sx={{ marginRight: "1rem" }} />
               Continue with Google
             </Button>

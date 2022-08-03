@@ -11,7 +11,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import GoogleIcon from "@mui/icons-material/Google";
-import { createUser } from "../auth/firebase";
+import { createUser, signUpProvider } from "../auth/firebase";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -52,6 +52,9 @@ export default function Register() {
     ${firstName} ${lastName}`;
     // console.log(firstName, lastName);
     createUser(email, password, navigate, displayName);
+  };
+  const handleProviderLogin = () => {
+    signUpProvider(navigate);
   };
 
   return (
@@ -140,7 +143,12 @@ export default function Register() {
             >
               Register
             </Button>
-            <Button variant="outlined" fullWidth sx={{ mb: 2 }}>
+            <Button
+              variant="outlined"
+              fullWidth
+              sx={{ mb: 2 }}
+              onClick={handleProviderLogin}
+            >
               <GoogleIcon sx={{ marginRight: "1rem" }} />
               Continue with Google
             </Button>
