@@ -55,7 +55,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function MenuAppBar() {
-  const [currentUser, setCurrentUser] = React.useState(false);
+  const [currentUser, setCurrentUser] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   // const handleChange = (event) => {
@@ -71,6 +71,22 @@ export default function MenuAppBar() {
   };
   const handleLogin = () => {
     navigate("/login");
+    setAnchorEl(null);
+  };
+  const handleRegister = () => {
+    navigate("/register");
+    setAnchorEl(null);
+  };
+  const handleProfile = () => {
+    navigate("/profile");
+    setAnchorEl(null);
+  };
+  const handleNewBlog = () => {
+    navigate("/newblog");
+    setAnchorEl(null);
+  };
+  const handleLogout = () => {
+    navigate("/");
     setAnchorEl(null);
   };
   return (
@@ -126,7 +142,7 @@ export default function MenuAppBar() {
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleLogin}>Login</MenuItem>
-                <MenuItem>Register</MenuItem>
+                <MenuItem onClick={handleRegister}>Register</MenuItem>
               </Menu>
             </div>
           ) : (
@@ -156,9 +172,9 @@ export default function MenuAppBar() {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem>Profile</MenuItem>
-                <MenuItem>New Blog</MenuItem>
-                <MenuItem>Logout</MenuItem>
+                <MenuItem onClick={handleProfile}>Profile</MenuItem>
+                <MenuItem onClick={handleNewBlog}>New Blog</MenuItem>
+                <MenuItem onClick={handleLogout}>Logout</MenuItem>
               </Menu>
             </div>
           )}
