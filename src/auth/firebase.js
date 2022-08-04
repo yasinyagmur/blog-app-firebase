@@ -9,7 +9,8 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
-import { getDatabase, ref, set } from "firebase/database";
+import { getDatabase, onValue, push, ref, set } from "firebase/database";
+import { useEffect, useState } from "react";
 
 // TODO: Replace the following with your app's Firebase project configuration
 // See: https://firebase.google.com/docs/web/learn-more#config-object
@@ -100,11 +101,33 @@ export const signUpProvider = (navigate) => {
 export const AddBlog = (values) => {
   console.log(values);
   const db = getDatabase();
-  set(ref(db, "blogapp/"), {
-    title: values.title,
+  const blogRef = ref(db, "blogapp/");
+  const newBlogRef = push(blogRef);
+  set(newBlogRef, {
+    itle: values.title,
     imgurl: values.imgUrl,
     content: values.content,
+    id: values.id,
   });
 };
 
 //! Get blog from database
+export const useFetch = () => {
+  const [blog, setBlog] = useState();
+  useEffect(() => {
+    const db = getDatabase();
+    const blogRef = ref(db, "blogapp/");
+    onValue(blogRef, (snapshot) => {
+      const data = snapshot.val();
+      const blogArray = [];
+      for (let id in data) {
+        blogArray.push({
+          id,
+          ...data[id],
+        });
+      }
+      setBlog(blogArray);
+      console.log(blogArray);
+    });
+  }, []);
+};
