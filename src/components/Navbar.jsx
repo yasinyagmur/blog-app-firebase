@@ -111,7 +111,7 @@ export default function Navbar() {
           <Typography
             variant="h6"
             component="div"
-            sx={{ flexGrow: 1, textAlign: "end" }}
+            sx={{ flexGrow: 1, textAlign: "end", fontSize: "1rem" }}
           >
             {currentUser.displayName}
           </Typography>
