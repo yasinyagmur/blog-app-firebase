@@ -5,44 +5,79 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { IconButton } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useNavigate } from "react-router-dom";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import { Container } from "@mui/system";
+import { useFetch } from "../auth/firebase";
+import loading from "../assets/loading.gif";
 
 export default function BlogCard() {
   const navigate = useNavigate();
+  const { blogGet, isLoading } = useFetch();
+  console.log(blogGet);
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardMedia
-        component="img"
-        height="140"
-        image="/static/images/cards/contemplative-reptile.jpg"
-        alt="green iguana"
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          Lizard
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Container>
-          <IconButton aria-label="add to favorites">
-            <FavoriteIcon />
-          </IconButton>
-          <IconButton aria-label="Comment">
-            <ChatBubbleOutlineIcon />
-          </IconButton>
-        </Container>
-        <Button size="small" onClick={() => navigate("/details")}>
-          Detail
-        </Button>
-      </CardActions>
-    </Card>
+    <Box
+      sx={{
+        display: "flex",
+        marginTop: "2rem",
+      }}
+    >
+      {isLoading ? (
+        <Card sx={{ maxWidth: 345 }}>
+          <CardMedia
+            component="img"
+            height="140"
+            image={loading}
+            alt="green iguana"
+          />
+        </Card>
+      ) : (
+        blogGet?.map((item, index) => (
+          <Container>
+            <Card key={index} sx={{ margin: "auto", maxWidth: 345 }}>
+              <CardMedia
+                component="img"
+                height="200"
+                sx={{ objectFit: "fill" }}
+                image={item.imgurl}
+                alt={item.title}
+              />
+              <CardContent>
+                <Typography
+                  gutterBottom
+                  variant="h5"
+                  component="div"
+                  sx={{ maxHeight: "1.5rem", overflow: "hidden" }}
+                >
+                  {item.title}
+                </Typography>
+                <Typography
+                  sx={{ height: "3.8rem", overflow: "hidden" }}
+                  variant="body2"
+                  color="text.secondary"
+                >
+                  {item.content}
+                </Typography>
+              </CardContent>
+              <CardActions>
+                <Container>
+                  <IconButton aria-label="add to favorites">
+                    <FavoriteIcon />
+                  </IconButton>
+                  <IconButton aria-label="Comment">
+                    <ChatBubbleOutlineIcon />
+                  </IconButton>
+                </Container>
+                <Button size="small" onClick={() => navigate("/details")}>
+                  Detail
+                </Button>
+              </CardActions>
+            </Card>
+          </Container>
+        ))
+      )}
+    </Box>
   );
 }

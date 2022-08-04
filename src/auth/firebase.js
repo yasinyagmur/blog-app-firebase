@@ -104,7 +104,7 @@ export const AddBlog = (values) => {
   const blogRef = ref(db, "blogapp/");
   const newBlogRef = push(blogRef);
   set(newBlogRef, {
-    itle: values.title,
+    title: values.title,
     imgurl: values.imgUrl,
     content: values.content,
     id: values.id,
@@ -113,7 +113,8 @@ export const AddBlog = (values) => {
 
 //! Get blog from database
 export const useFetch = () => {
-  const [blog, setBlog] = useState();
+  const [blogGet, setBlogGet] = useState();
+  const [isLoading, setİsLoading] = useState(true);
   useEffect(() => {
     const db = getDatabase();
     const blogRef = ref(db, "blogapp/");
@@ -121,13 +122,11 @@ export const useFetch = () => {
       const data = snapshot.val();
       const blogArray = [];
       for (let id in data) {
-        blogArray.push({
-          id,
-          ...data[id],
-        });
+        blogArray.push({ id, ...data[id] });
       }
-      setBlog(blogArray);
-      console.log(blogArray);
+      setBlogGet(blogArray);
+      setİsLoading(false);
     });
   }, []);
+  return { blogGet, isLoading };
 };
