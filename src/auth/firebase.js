@@ -9,6 +9,7 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
+import { getDatabase, ref, set } from "firebase/database";
 
 // TODO: Replace the following with your app's Firebase project configuration
 // See: https://firebase.google.com/docs/web/learn-more#config-object
@@ -19,6 +20,7 @@ const firebaseConfig = {
   storageBucket: process.env.REACT_APP_storageBucket,
   messagingSenderId: process.env.REACT_APP_messagingSenderId,
   appId: process.env.REACT_APP_appId,
+  databaseURL: process.env.REACT_APP_databaseURL,
 };
 
 // Initialize Firebase
@@ -62,7 +64,7 @@ export const userObserver = (setCurrentUser) => {
   //? Kullanıcının signin olup olmadığını takip eden ve kullanıcı değiştiğinde yeni kullanıcıyı response olarak dönen firebase metodu
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      console.log(user);
+      // console.log(user);
       setCurrentUser(user);
     } else {
       // User is signed out
@@ -92,3 +94,17 @@ export const signUpProvider = (navigate) => {
       console.log(error);
     });
 };
+
+//! ***********FİREBASE REALTİME DATABASE***********
+//! Added NewBlog
+export const AddBlog = (values) => {
+  console.log(values);
+  const db = getDatabase();
+  set(ref(db, "blogapp/"), {
+    title: values.title,
+    imgurl: values.imgUrl,
+    content: values.content,
+  });
+};
+
+//! Get blog from database

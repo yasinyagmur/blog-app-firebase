@@ -55,7 +55,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function Navbar() {
   const { currentUser } = React.useContext(AuthContext);
-  console.log(currentUser);
+  // console.log(currentUser);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const navigate = useNavigate();
