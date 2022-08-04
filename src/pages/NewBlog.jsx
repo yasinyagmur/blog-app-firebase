@@ -13,13 +13,7 @@ export default function NewBlog() {
         marginTop: "10rem",
       }}
     >
-      <TextField
-        fullWidth
-        label="Title"
-        id="fullWidth"
-        sx={{ marginTop: "1rem" }}
-        required
-      />
+      <TextField fullWidth label="Title" id="fullWidth" required />
       <TextField
         fullWidth
         label="Image URL"
