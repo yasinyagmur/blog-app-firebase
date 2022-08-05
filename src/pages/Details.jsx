@@ -6,27 +6,49 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useLocation } from "react-router-dom";
+import { Container } from "@mui/system";
+import { Box } from "@mui/material";
 
 export default function Details() {
   const item = useLocation();
   console.log(item);
+  const { title, content, imgurl } = item.state;
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardMedia component="img" alt="green iguana" height="140" image={null} />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          Lizard
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
-      </CardActions>
-    </Card>
+    <Container
+      sx={{
+        display: "flex",
+        height: "90vh",
+        justifyContent: "center",
+      }}
+    >
+      <Card
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          alignItems: "flex-end",
+          marginTop: "6rem",
+          marginBottom: "3rem",
+          maxWidth: 450,
+        }}
+      >
+        <Box>
+          <CardMedia component="img" alt={title} height="300" image={imgurl} />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              {title}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              {content}
+            </Typography>
+          </CardContent>
+        </Box>
+        <CardActions sx={{ marginBottom: "1rem" }}>
+          <Button size="small">Update </Button>
+          <Button size="small">Delete </Button>
+        </CardActions>
+      </Card>
+    </Container>
   );
 }

@@ -44,10 +44,7 @@ export default function BlogCard() {
         blogGet?.map((item, index) => {
           return (
             <Container key={index}>
-              <Card
-                sx={{ margin: "auto", maxWidth: 345 }}
-                onClick={navigate(`/detail/${item.id}`, { item })}
-              >
+              <Card sx={{ margin: "auto", maxWidth: 345 }}>
                 <CardMedia
                   component="img"
                   height="200"
@@ -81,7 +78,14 @@ export default function BlogCard() {
                       <ChatBubbleOutlineIcon />
                     </IconButton>
                   </Container>
-                  <Button size="small">Detail</Button>
+                  <Button
+                    size="small"
+                    onClick={() =>
+                      navigate(`/detail/${item.id}`, { state: item })
+                    }
+                  >
+                    Detail
+                  </Button>
                 </CardActions>
               </Card>
             </Container>
