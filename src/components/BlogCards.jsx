@@ -17,6 +17,7 @@ export default function BlogCard() {
   const navigate = useNavigate();
   const { blogGet, isLoading } = useFetch();
   console.log(blogGet);
+
   return (
     <Box
       sx={{
@@ -40,49 +41,52 @@ export default function BlogCard() {
           />
         </Card>
       ) : (
-        blogGet?.map((item, index) => (
-          <Container key={index}>
-            <Card sx={{ margin: "auto", maxWidth: 345 }}>
-              <CardMedia
-                component="img"
-                height="200"
-                sx={{ objectFit: "fill" }}
-                image={item.imgurl ? item.imgurl : loading.gif}
-                alt={item.title}
-              />
-              <CardContent>
-                <Typography
-                  gutterBottom
-                  variant="h5"
-                  component="div"
-                  sx={{ maxHeight: "1.5rem", overflow: "hidden" }}
-                >
-                  {item.title}
-                </Typography>
-                <Typography
-                  sx={{ height: "3.8rem", overflow: "hidden" }}
-                  variant="body2"
-                  color="text.secondary"
-                >
-                  {item.content}
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <Container>
-                  <IconButton aria-label="add to favorites">
-                    <FavoriteIcon />
-                  </IconButton>
-                  <IconButton aria-label="Comment">
-                    <ChatBubbleOutlineIcon />
-                  </IconButton>
-                </Container>
-                <Button size="small" onClick={() => navigate("/detail")}>
-                  Detail
-                </Button>
-              </CardActions>
-            </Card>
-          </Container>
-        ))
+        blogGet?.map((item, index) => {
+          return (
+            <Container key={index}>
+              <Card
+                sx={{ margin: "auto", maxWidth: 345 }}
+                onClick={navigate(`/detail/${item.id}`, { item })}
+              >
+                <CardMedia
+                  component="img"
+                  height="200"
+                  sx={{ objectFit: "fill" }}
+                  image={item.imgurl ? item.imgurl : loading.gif}
+                  alt={item.title}
+                />
+                <CardContent>
+                  <Typography
+                    gutterBottom
+                    variant="h5"
+                    component="div"
+                    sx={{ maxHeight: "1.5rem", overflow: "hidden" }}
+                  >
+                    {item.title}
+                  </Typography>
+                  <Typography
+                    sx={{ height: "3.8rem", overflow: "hidden" }}
+                    variant="body2"
+                    color="text.secondary"
+                  >
+                    {item.content}
+                  </Typography>
+                </CardContent>
+                <CardActions>
+                  <Container>
+                    <IconButton aria-label="add to favorites">
+                      <FavoriteIcon />
+                    </IconButton>
+                    <IconButton aria-label="Comment">
+                      <ChatBubbleOutlineIcon />
+                    </IconButton>
+                  </Container>
+                  <Button size="small">Detail</Button>
+                </CardActions>
+              </Card>
+            </Container>
+          );
+        })
       )}
     </Box>
   );

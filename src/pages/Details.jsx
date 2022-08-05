@@ -5,16 +5,15 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import { useLocation } from "react-router-dom";
 
 export default function Details() {
+  const item = useLocation();
+  console.log(item);
+
   return (
     <Card sx={{ maxWidth: 345 }}>
-      <CardMedia
-        component="img"
-        alt="green iguana"
-        height="140"
-        image="/static/images/cards/contemplative-reptile.jpg"
-      />
+      <CardMedia component="img" alt="green iguana" height="140" image={null} />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           Lizard
