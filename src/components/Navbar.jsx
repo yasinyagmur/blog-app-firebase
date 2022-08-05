@@ -83,7 +83,7 @@ export default function Navbar() {
     setAnchorEl(null);
   };
   const handleLogout = () => {
-    logOut();
+    logOut(navigate);
     setAnchorEl(null);
   };
   return (

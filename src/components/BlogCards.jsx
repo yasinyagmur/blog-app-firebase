@@ -25,23 +25,29 @@ export default function BlogCard() {
       }}
     >
       {isLoading ? (
-        <Card sx={{ maxWidth: 345 }}>
+        <Card
+          sx={{
+            display: "flex",
+            margin: "auto",
+          }}
+        >
           <CardMedia
             component="img"
-            height="140"
             image={loading}
+            height="700"
             alt="green iguana"
+            sx={{ margin: "auto" }}
           />
         </Card>
       ) : (
         blogGet?.map((item, index) => (
-          <Container>
-            <Card key={index} sx={{ margin: "auto", maxWidth: 345 }}>
+          <Container key={index}>
+            <Card sx={{ margin: "auto", maxWidth: 345 }}>
               <CardMedia
                 component="img"
                 height="200"
                 sx={{ objectFit: "fill" }}
-                image={item.imgurl}
+                image={item.imgurl ? item.imgurl : loading.gif}
                 alt={item.title}
               />
               <CardContent>
@@ -70,7 +76,7 @@ export default function BlogCard() {
                     <ChatBubbleOutlineIcon />
                   </IconButton>
                 </Container>
-                <Button size="small" onClick={() => navigate("/details")}>
+                <Button size="small" onClick={() => navigate("/detail")}>
                   Detail
                 </Button>
               </CardActions>

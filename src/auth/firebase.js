@@ -73,8 +73,9 @@ export const userObserver = (setCurrentUser) => {
     }
   });
 };
-export const logOut = () => {
+export const logOut = (navigate) => {
   signOut(auth);
+  navigate("/");
 };
 
 //* https://console.firebase.google.com/
