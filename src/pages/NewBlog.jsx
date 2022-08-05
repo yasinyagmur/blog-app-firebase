@@ -4,11 +4,11 @@ import { AddBlog } from "../auth/firebase";
 import { useNavigate } from "react-router-dom";
 
 export default function NewBlog() {
-  const id = new Date().getTime();
+  // const id = new Date().getTime();
   const navigate = useNavigate();
   return (
     <Formik
-      initialValues={{ title: "", imgUrl: "", content: "", id }}
+      initialValues={{ title: "", imgUrl: "", content: "" }}
       onSubmit={(values, actions) => {
         // console.log(values);
         AddBlog(values);

@@ -9,7 +9,14 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
-import { getDatabase, onValue, push, ref, set } from "firebase/database";
+import {
+  getDatabase,
+  onValue,
+  push,
+  ref,
+  remove,
+  set,
+} from "firebase/database";
 import { useEffect, useState } from "react";
 
 // TODO: Replace the following with your app's Firebase project configuration
@@ -108,7 +115,7 @@ export const AddBlog = (values) => {
     title: values.title,
     imgurl: values.imgUrl,
     content: values.content,
-    id: values.id,
+    // id: values.id,
   });
 };
 
@@ -146,4 +153,12 @@ export const blogDetailGet = () => {
       onlyOnce: true,
     }
   );
+};
+
+//!Delete Blog
+export const deleteBlog = (id, navigate) => {
+  const db = getDatabase();
+  console.log(id);
+  remove(ref(db, `blogapp${id}`));
+  navigate("/");
 };

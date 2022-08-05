@@ -5,11 +5,15 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Container } from "@mui/system";
 import { Box } from "@mui/material";
+import { deleteBlog } from "../auth/firebase";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
 
 export default function Details() {
+  const navigate = useNavigate();
   const item = useLocation();
   console.log(item);
   const { title, content, imgurl } = item.state;
@@ -45,8 +49,16 @@ export default function Details() {
           </CardContent>
         </Box>
         <CardActions sx={{ marginBottom: "1rem" }}>
-          <Button size="small">Update </Button>
-          <Button size="small">Delete </Button>
+          <Button size="small">
+            <EditIcon fontSize="small" />
+            Edit
+          </Button>
+          <Button
+            size="small"
+            onClick={() => deleteBlog(item.state.id, navigate)}
+          >
+            <DeleteIcon fontSize="small" /> Delete
+          </Button>
         </CardActions>
       </Card>
     </Container>
