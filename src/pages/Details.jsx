@@ -23,6 +23,11 @@ export default function Details() {
   const [editTitle, setEditTitle] = useState("");
   const [editImgUrl, setEditImgUrl] = useState("");
   const [editContent, setEditContent] = useState("");
+  const uptadeBlog = {
+    title: editTitle,
+    content: editContent,
+    imgurl: editImgUrl,
+  };
   // console.log(editTitle);
   // console.log(editImgUrl);
   // console.log(editContent);
@@ -30,8 +35,9 @@ export default function Details() {
     setIsEditClick(true);
   };
   const editConfirm = () => {
-    EditBlogCard(editTitle, editImgUrl, editContent, item.state.id);
+    EditBlogCard(uptadeBlog, item.state.id);
     setIsEditClick(false);
+    navigate("/");
   };
 
   return (

@@ -164,12 +164,18 @@ export const deleteBlog = (id, navigate) => {
   navigate("/");
 };
 //!Edit Blog
-export const EditBlogCard = (editTitle, editImgUrl, editContent, id) => {
+export const EditBlogCard = (uptadeBlog, id) => {
   const db = getDatabase();
+  // console.log(editTitle);
+  console.log(id);
 
-  update(ref(db, `blogapp` + id), {
-    title: editTitle,
-    imgurl: editImgUrl,
-    content: editContent,
-  });
+  const updates = {};
+  updates["blogapp/" + id] = uptadeBlog;
+  return update(ref(db), updates);
+
+  // return update(ref(db, `blogapp` + id), {
+  //   title: editTitle,
+  //   imgurl: editImgUrl,
+  //   content: editContent,
+  // });
 };
