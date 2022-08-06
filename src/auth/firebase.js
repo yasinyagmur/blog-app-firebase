@@ -36,9 +36,10 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 // Initialize Firebase Authentication and get a reference to the service
+// console.log(auth);
+
 export const createUser = async (email, password, navigate, displayName) => {
   //! new user create method firebase
-
   try {
     let userCredential = await createUserWithEmailAndPassword(
       auth,
@@ -109,6 +110,8 @@ export const signUpProvider = (navigate) => {
 //! Added NewBlog
 export const AddBlog = (values) => {
   console.log(values);
+  const auth = getAuth();
+
   const db = getDatabase();
   const blogRef = ref(db, "blogapp/");
   const newBlogRef = push(blogRef);
@@ -118,6 +121,7 @@ export const AddBlog = (values) => {
     content: values.content,
     // id: values.id,
   });
+  console.log(auth);
 };
 
 //! Get blog from database
@@ -163,3 +167,8 @@ export const EditBlogCard = (uptadeBlog, id) => {
   //   content: editContent,
   // });
 };
+//! Search Blog
+// export const SearchBlogs = (searchValue) => {
+//   // console.log(searchValue);
+//   return searchValue;
+// };
