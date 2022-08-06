@@ -12,13 +12,16 @@ import { deleteBlog, EditBlogCard } from "../auth/firebase";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { useState } from "react";
+import { AuthContext } from "../context/AuthContext";
 
 export default function Details() {
+  const { currentUser } = React.useContext(AuthContext);
+  // console.log(currentUser.email);
   const navigate = useNavigate();
   const item = useLocation();
   // console.log(item);
-  const { title, content, imgurl } = item.state;
-
+  const { title, content, imgurl, email } = item.state;
+  // console.log(email);
   const [ısEditClick, setIsEditClick] = useState(false);
   const [editTitle, setEditTitle] = useState("");
   const [editImgUrl, setEditImgUrl] = useState("");
@@ -27,6 +30,7 @@ export default function Details() {
     title: editTitle ? editTitle : title,
     content: editContent ? editContent : content,
     imgurl: editImgUrl ? editImgUrl : imgurl,
+    email: currentUser.email,
   };
   // console.log(editTitle);
   // console.log(editImgUrl);
@@ -134,7 +138,7 @@ export default function Details() {
             )}
           </CardContent>
         </Box>
-        {!ısEditClick && (
+        {currentUser.email === email && !ısEditClick && (
           <CardActions sx={{ marginBottom: "1rem" }}>
             <Button size="small" onClick={handleEdit}>
               <EditIcon fontSize="small" />

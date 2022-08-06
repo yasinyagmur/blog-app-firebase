@@ -16,7 +16,7 @@ import loading from "../assets/loading.gif";
 export default function BlogCard() {
   const navigate = useNavigate();
   const { blogGet, isLoading } = useFetch();
-  console.log(blogGet);
+  // console.log(blogGet);
 
   return (
     <Box

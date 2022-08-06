@@ -119,9 +119,10 @@ export const AddBlog = (values) => {
     title: values.title,
     imgurl: values.imgUrl,
     content: values.content,
+    email: auth.currentUser.email,
     // id: values.id,
   });
-  console.log(auth);
+  // console.log(auth.currentUser.email);
 };
 
 //! Get blog from database
@@ -155,7 +156,7 @@ export const deleteBlog = (id, navigate) => {
 export const EditBlogCard = (uptadeBlog, id) => {
   const db = getDatabase();
   // console.log(editTitle);
-  console.log(id);
+  // console.log(id);
 
   const updates = {};
   updates["blogapp/" + id] = uptadeBlog;
