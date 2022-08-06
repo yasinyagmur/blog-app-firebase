@@ -45,45 +45,31 @@ export default function Details() {
   };
 
   return (
-    <Container
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-      }}
-    >
-      <Card
+    <Container sx={{ height: "100vh", marginTop: "7rem" }}>
+      <Container
         sx={{
           display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          alignItems: "flex-end",
-          marginTop: "6rem",
-          marginBottom: "1rem",
-          maxWidth: 450,
+          justifyContent: "center",
         }}
       >
-        <Box>
-          <CardMedia component="img" alt={title} height="300" image={imgurl} />
-          {ısEditClick && (
-            <Box
-              sx={{
-                maxWidth: "100%",
-              }}
-            >
-              <TextField
-                fullWidth
-                sx={{ marginTop: "0.5rem" }}
-                label="Image Url"
-                required
-                id="fullWidth"
-                onChange={(e) => setEditImgUrl(e.target.value)}
-              />
-            </Box>
-          )}
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              {title}
-            </Typography>
+        <Card
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+            alignItems: "flex-end",
+            marginTop: "6rem",
+            marginBottom: "1rem",
+            maxWidth: 450,
+          }}
+        >
+          <Box>
+            <CardMedia
+              component="img"
+              alt={title}
+              height="300"
+              image={imgurl}
+            />
             {ısEditClick && (
               <Box
                 sx={{
@@ -92,69 +78,90 @@ export default function Details() {
               >
                 <TextField
                   fullWidth
-                  label="Title"
-                  required
-                  id="fullWidth"
-                  onChange={(e) => setEditTitle(e.target.value)}
-                />
-              </Box>
-            )}
-
-            <Typography variant="body2" color="text.secondary">
-              {content}
-            </Typography>
-            {ısEditClick && (
-              <Box
-                sx={{
-                  maxWidth: "100%",
-                }}
-              >
-                <TextField
                   sx={{ marginTop: "0.5rem" }}
-                  fullWidth
-                  label="Content"
-                  multiline
-                  rows={3}
+                  label="Image Url"
                   required
                   id="fullWidth"
-                  onChange={(e) => setEditContent(e.target.value)}
+                  onChange={(e) => setEditImgUrl(e.target.value)}
                 />
-                <Button
-                  size="small"
-                  sx={{ marginTop: "0.6rem" }}
-                  onClick={editConfirm}
-                >
-                  Confirm
-                </Button>
-                <Button
-                  size="small"
-                  sx={{ marginTop: "0.6rem" }}
-                  onClick={() => setIsEditClick(false)}
-                >
-                  Cancel
-                </Button>
               </Box>
             )}
-          </CardContent>
-        </Box>
-        <CardActions>
-          <Button onClick={() => navigate(-1)}>Go Back</Button>
-        </CardActions>
-        {currentUser.email === email && !ısEditClick && (
-          <CardActions sx={{ marginBottom: "1rem" }}>
-            <Button size="small" onClick={handleEdit}>
-              <EditIcon fontSize="small" />
-              Edit
-            </Button>
-            <Button
-              size="small"
-              onClick={() => deleteBlog(item.state.id, navigate)}
-            >
-              <DeleteIcon fontSize="small" /> Delete
-            </Button>
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                {title}
+              </Typography>
+              {ısEditClick && (
+                <Box
+                  sx={{
+                    maxWidth: "100%",
+                  }}
+                >
+                  <TextField
+                    fullWidth
+                    label="Title"
+                    required
+                    id="fullWidth"
+                    onChange={(e) => setEditTitle(e.target.value)}
+                  />
+                </Box>
+              )}
+
+              <Typography variant="body2" color="text.secondary">
+                {content}
+              </Typography>
+              {ısEditClick && (
+                <Box
+                  sx={{
+                    maxWidth: "100%",
+                  }}
+                >
+                  <TextField
+                    sx={{ marginTop: "0.5rem" }}
+                    fullWidth
+                    label="Content"
+                    multiline
+                    rows={3}
+                    required
+                    id="fullWidth"
+                    onChange={(e) => setEditContent(e.target.value)}
+                  />
+                  <Button
+                    size="small"
+                    sx={{ marginTop: "0.6rem" }}
+                    onClick={editConfirm}
+                  >
+                    Confirm
+                  </Button>
+                  <Button
+                    size="small"
+                    sx={{ marginTop: "0.6rem" }}
+                    onClick={() => setIsEditClick(false)}
+                  >
+                    Cancel
+                  </Button>
+                </Box>
+              )}
+            </CardContent>
+          </Box>
+          <CardActions>
+            <Button onClick={() => navigate(-1)}>Go Back</Button>
           </CardActions>
-        )}
-      </Card>
+          {currentUser.email === email && !ısEditClick && (
+            <CardActions sx={{ marginBottom: "1rem" }}>
+              <Button size="small" onClick={handleEdit}>
+                <EditIcon fontSize="small" />
+                Edit
+              </Button>
+              <Button
+                size="small"
+                onClick={() => deleteBlog(item.state.id, navigate)}
+              >
+                <DeleteIcon fontSize="small" /> Delete
+              </Button>
+            </CardActions>
+          )}
+        </Card>
+      </Container>
     </Container>
   );
 }

@@ -15,6 +15,7 @@ import NewBlog from "../pages/NewBlog";
 import Profile from "../pages/Profile";
 import { AuthContext } from "../context/AuthContext";
 import { useContext } from "react";
+import Footer from "../components/Footer";
 
 const AppRouter = () => {
   const { currentUser } = useContext(AuthContext);
@@ -39,6 +40,7 @@ const AppRouter = () => {
             <Route path="/profile" element={<Profile />} />
           </Route>
         </Routes>
+        <Footer />
       </BrowserRouter>
     </div>
   );

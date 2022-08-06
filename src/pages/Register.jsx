@@ -59,7 +59,11 @@ export default function Register() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
+      <Container
+        component="main"
+        maxWidth="xs"
+        sx={{ height: "100vh", marginTop: "7rem" }}
+      >
         <CssBaseline />
         <Box
           sx={{

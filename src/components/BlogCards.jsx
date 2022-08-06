@@ -29,14 +29,15 @@ export default function BlogCard() {
           sx={{
             display: "flex",
             margin: "auto",
+            height: "100vh",
           }}
         >
           <CardMedia
             component="img"
             image={loading}
-            height="700"
+            height="500"
             alt="green iguana"
-            sx={{ margin: "auto" }}
+            sx={{ margin: "auto", objectFit: "contain" }}
           />
         </Card>
       ) : (
