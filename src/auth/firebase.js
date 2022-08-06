@@ -140,22 +140,6 @@ export const useFetch = () => {
   return { blogGet, isLoading };
 };
 
-// //!Get Blog Details for read one
-// export const blogDetailGet = () => {
-//   const db = getDatabase();
-//   const auth = getAuth();
-//   const blogId = auth.currentUser.uid;
-//   return onValue(
-//     ref(db, `/blogapp/` + blogId),
-//     (snapshot) => {
-//       const blogDetail = snapshot.val() && snapshot.val().blogDetail;
-//     },
-//     {
-//       onlyOnce: true,
-//     }
-//   );
-// };
-
 //!Delete Blog
 export const deleteBlog = (id, navigate) => {
   const db = getDatabase();

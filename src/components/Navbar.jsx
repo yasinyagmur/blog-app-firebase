@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { logOut } from "../auth/firebase";
 import { Link } from "@mui/material";
+import { useState } from "react";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -57,6 +58,8 @@ export default function Navbar() {
   const { currentUser } = React.useContext(AuthContext);
   // console.log(currentUser);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [searchValue, setSearchValue] = useState("");
+  console.log(searchValue);
 
   const navigate = useNavigate();
   const handleMenu = (event) => {
@@ -98,15 +101,18 @@ export default function Navbar() {
           >
             Rain Man Blog App
           </Link>
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ "aria-label": "search" }}
-            />
-          </Search>
+          {currentUser && (
+            <Search onChange={(e) => setSearchValue(e.target.value)}>
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+              <StyledInputBase
+                placeholder="Search…"
+                inputProps={{ "aria-label": "search" }}
+              />
+            </Search>
+          )}
+
           <Typography
             variant="h6"
             component="div"
