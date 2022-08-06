@@ -19,9 +19,8 @@ export default function BlogCard() {
   // console.log(blogGet);
 
   return (
-    <Box
+    <Container
       sx={{
-        display: "flex",
         marginTop: "2rem",
       }}
     >
@@ -43,8 +42,14 @@ export default function BlogCard() {
       ) : (
         blogGet?.map((item, index) => {
           return (
-            <Container key={index}>
-              <Card sx={{ margin: "auto", maxWidth: 345 }}>
+            <Box
+              key={index}
+              sx={{
+                display: "inline-flex",
+                margin: "1rem",
+              }}
+            >
+              <Card sx={{ maxWidth: 345 }}>
                 <CardMedia
                   component="img"
                   height="200"
@@ -88,10 +93,10 @@ export default function BlogCard() {
                   </Button>
                 </CardActions>
               </Card>
-            </Container>
+            </Box>
           );
         })
       )}
-    </Box>
+    </Container>
   );
 }

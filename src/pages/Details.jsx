@@ -48,7 +48,6 @@ export default function Details() {
     <Container
       sx={{
         display: "flex",
-        height: "90vh",
         justifyContent: "center",
       }}
     >
@@ -138,6 +137,9 @@ export default function Details() {
             )}
           </CardContent>
         </Box>
+        <CardActions>
+          <Button onClick={() => navigate(-1)}>Go Back</Button>
+        </CardActions>
         {currentUser.email === email && !ısEditClick && (
           <CardActions sx={{ marginBottom: "1rem" }}>
             <Button size="small" onClick={handleEdit}>

@@ -149,7 +149,7 @@ export const useFetch = () => {
 export const deleteBlog = (id, navigate) => {
   const db = getDatabase();
   console.log(id);
-  remove(ref(db, `blogapp${id}`));
+  remove(ref(db, `blogapp/${id}`));
   navigate("/");
 };
 //!Edit Blog

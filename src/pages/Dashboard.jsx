@@ -2,11 +2,7 @@ import React from "react";
 import BlogCards from "../components/BlogCards";
 
 const Dashboard = () => {
-  return (
-    <div>
-      <BlogCards />
-    </div>
-  );
+  return <BlogCards />;
 };
 
 export default Dashboard;
