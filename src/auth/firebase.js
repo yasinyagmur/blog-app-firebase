@@ -16,6 +16,7 @@ import {
   ref,
   remove,
   set,
+  update,
 } from "firebase/database";
 import { useEffect, useState } from "react";
 
@@ -139,21 +140,21 @@ export const useFetch = () => {
   return { blogGet, isLoading };
 };
 
-//!Get Blog Details for read one
-export const blogDetailGet = () => {
-  const db = getDatabase();
-  const auth = getAuth();
-  const blogId = auth.currentUser.uid;
-  return onValue(
-    ref(db, `/blogapp/` + blogId),
-    (snapshot) => {
-      const blogDetail = snapshot.val() && snapshot.val().blogDetail;
-    },
-    {
-      onlyOnce: true,
-    }
-  );
-};
+// //!Get Blog Details for read one
+// export const blogDetailGet = () => {
+//   const db = getDatabase();
+//   const auth = getAuth();
+//   const blogId = auth.currentUser.uid;
+//   return onValue(
+//     ref(db, `/blogapp/` + blogId),
+//     (snapshot) => {
+//       const blogDetail = snapshot.val() && snapshot.val().blogDetail;
+//     },
+//     {
+//       onlyOnce: true,
+//     }
+//   );
+// };
 
 //!Delete Blog
 export const deleteBlog = (id, navigate) => {
@@ -161,4 +162,14 @@ export const deleteBlog = (id, navigate) => {
   console.log(id);
   remove(ref(db, `blogapp${id}`));
   navigate("/");
+};
+//!Edit Blog
+export const EditBlogCard = (editTitle, editImgUrl, editContent, id) => {
+  const db = getDatabase();
+
+  update(ref(db, `blogapp` + id), {
+    title: editTitle,
+    imgurl: editImgUrl,
+    content: editContent,
+  });
 };
