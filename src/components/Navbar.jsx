@@ -4,7 +4,6 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
@@ -14,6 +13,7 @@ import InputBase from "@mui/material/InputBase";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { logOut } from "../auth/firebase";
+import { Link } from "@mui/material";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -90,15 +90,14 @@ export default function Navbar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
+          <Link
+            to="/"
+            underline="none"
+            sx={{ flexGrow: 1, color: "white", cursor: "pointer" }}
+            onClick={() => navigate("/")}
           >
-            <MenuIcon />
-          </IconButton>
+            Rain Man Blog App
+          </Link>
           <Search>
             <SearchIconWrapper>
               <SearchIcon />

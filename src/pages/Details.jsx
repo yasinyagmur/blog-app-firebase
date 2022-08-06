@@ -24,9 +24,9 @@ export default function Details() {
   const [editImgUrl, setEditImgUrl] = useState("");
   const [editContent, setEditContent] = useState("");
   const uptadeBlog = {
-    title: editTitle,
-    content: editContent,
-    imgurl: editImgUrl,
+    title: editTitle ? editTitle : title,
+    content: editContent ? editContent : content,
+    imgurl: editImgUrl ? editImgUrl : imgurl,
   };
   // console.log(editTitle);
   // console.log(editImgUrl);

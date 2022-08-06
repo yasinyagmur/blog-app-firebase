@@ -57,7 +57,7 @@ export default function BlogCard() {
                     gutterBottom
                     variant="h5"
                     component="div"
-                    sx={{ maxHeight: "1.5rem", overflow: "hidden" }}
+                    sx={{ maxHeight: "2rem", overflow: "hidden" }}
                   >
                     {item.title}
                   </Typography>
