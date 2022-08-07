@@ -99,7 +99,13 @@ export default function Navbar() {
           <Link
             to="/"
             underline="none"
-            sx={{ flexGrow: 1, color: "white", cursor: "pointer" }}
+            sx={{
+              flexGrow: 1,
+              color: "white",
+              cursor: "pointer",
+              fontSize: "1rem",
+              fontWeight: "350",
+            }}
             onClick={() => navigate("/")}
           >
             Rain Man Blog App
@@ -121,7 +127,12 @@ export default function Navbar() {
           <Typography
             variant="h6"
             component="div"
-            sx={{ flexGrow: 1, textAlign: "end", fontSize: "1rem" }}
+            sx={{
+              flexGrow: 1,
+              textAlign: "end",
+              fontSize: "1rem",
+              fontWeight: "350",
+            }}
           >
             {currentUser.displayName}
           </Typography>

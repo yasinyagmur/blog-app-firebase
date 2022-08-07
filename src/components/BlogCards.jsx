@@ -19,7 +19,8 @@ export default function BlogCard() {
   const navigate = useNavigate();
   const { blogGet, isLoading } = useFetch();
   const { currentUser } = React.useContext(AuthContext);
-  // console.log(blogGet);
+
+  console.log(blogGet);
 
   return (
     <Container
@@ -77,6 +78,9 @@ export default function BlogCard() {
                   >
                     {item.content}
                   </Typography>
+                  {/* <Typography sx={{ fontSize: "0.7rem", fontWeight: "400" }}>
+                    Blog owner : {currentUser.displayName}
+                  </Typography> */}
                 </CardContent>
                 <CardActions>
                   <Container>
