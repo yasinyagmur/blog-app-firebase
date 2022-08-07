@@ -20,7 +20,7 @@ export default function BlogCard() {
   const { blogGet, isLoading } = useFetch();
   const { currentUser } = React.useContext(AuthContext);
 
-  console.log(blogGet);
+  // console.log(blogGet);
 
   return (
     <Container
