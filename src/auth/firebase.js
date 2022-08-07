@@ -19,6 +19,11 @@ import {
   update,
 } from "firebase/database";
 import { useEffect, useState } from "react";
+import {
+  toastErrorNotify,
+  toastSuccessNotify,
+  toastWarnNotify,
+} from "../helpers/ToastNotify";
 
 // TODO: Replace the following with your app's Firebase project configuration
 // See: https://firebase.google.com/docs/web/learn-more#config-object
@@ -49,10 +54,11 @@ export const createUser = async (email, password, navigate, displayName) => {
     await updateProfile(auth.currentUser, {
       displayName: displayName,
     });
+    toastSuccessNotify("Registered successfully!");
     navigate("/");
     console.log(userCredential);
   } catch (error) {
-    console.log(error);
+    toastErrorNotify(error.message);
   }
 };
 
@@ -64,8 +70,10 @@ export const signIn = async (email, password, navigate) => {
       password
     );
     navigate("/");
+    toastSuccessNotify("Logged in successfully!");
     console.log(userCredential);
   } catch (error) {
+    toastErrorNotify(error.message);
     console.log(error);
   }
 };
@@ -85,6 +93,7 @@ export const userObserver = (setCurrentUser) => {
 export const logOut = (navigate) => {
   signOut(auth);
   navigate("/");
+  toastSuccessNotify("Logged out successfully!");
 };
 
 //* https://console.firebase.google.com/
@@ -99,10 +108,11 @@ export const signUpProvider = (navigate) => {
   signInWithPopup(auth, provider)
     .then((result) => {
       navigate("/");
+      toastSuccessNotify("Logged in successfully!");
     })
     .catch((error) => {
+      toastWarnNotify(error.message);
       // Handle Errors here.
-      console.log(error);
     });
 };
 
@@ -122,6 +132,8 @@ export const AddBlog = (values) => {
     email: auth.currentUser.email,
     // id: values.id,
   });
+  toastSuccessNotify("New blog creation successful");
+
   // console.log(auth.currentUser.email);
 };
 
@@ -151,6 +163,7 @@ export const deleteBlog = (id, navigate) => {
   console.log(id);
   remove(ref(db, `blogapp/${id}`));
   navigate("/");
+  toastSuccessNotify("Blog successfully deleted");
 };
 //!Edit Blog
 export const EditBlogCard = (uptadeBlog, id) => {
@@ -160,6 +173,8 @@ export const EditBlogCard = (uptadeBlog, id) => {
 
   const updates = {};
   updates["blogapp/" + id] = uptadeBlog;
+  toastSuccessNotify("Blog updated");
+
   return update(ref(db), updates);
 
   // return update(ref(db, `blogapp` + id), {

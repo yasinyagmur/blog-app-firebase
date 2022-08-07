@@ -12,10 +12,13 @@ import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import { Container } from "@mui/system";
 import { useFetch } from "../auth/firebase";
 import loading from "../assets/loading.gif";
+import { toastWarnNotify } from "../helpers/ToastNotify";
+import { AuthContext } from "../context/AuthContext";
 
 export default function BlogCard() {
   const navigate = useNavigate();
   const { blogGet, isLoading } = useFetch();
+  const { currentUser } = React.useContext(AuthContext);
   // console.log(blogGet);
 
   return (
@@ -86,9 +89,11 @@ export default function BlogCard() {
                   </Container>
                   <Button
                     size="small"
-                    onClick={() =>
-                      navigate(`/detail/${item.id}`, { state: item })
-                    }
+                    onClick={() => {
+                      navigate(`/detail/${item.id}`, { state: item });
+                      !currentUser &&
+                        toastWarnNotify("Please log in to see detail");
+                    }}
                   >
                     Detail
                   </Button>
