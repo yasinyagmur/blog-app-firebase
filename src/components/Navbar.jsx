@@ -89,6 +89,10 @@ export default function Navbar() {
     logOut(navigate);
     setAnchorEl(null);
   };
+  const handleAbout = () => {
+    navigate("/about");
+    setAnchorEl(null);
+  };
 
   // SearchBlogs(searchValue);
 
@@ -165,6 +169,7 @@ export default function Navbar() {
               >
                 <MenuItem onClick={handleLogin}>Login</MenuItem>
                 <MenuItem onClick={handleRegister}>Register</MenuItem>
+                <MenuItem onClick={() => navigate("/about")}>About</MenuItem>
               </Menu>
             </div>
           ) : (
@@ -196,6 +201,7 @@ export default function Navbar() {
               >
                 <MenuItem onClick={handleProfile}>Profile</MenuItem>
                 <MenuItem onClick={handleNewBlog}>New Blog</MenuItem>
+                <MenuItem onClick={handleAbout}>About</MenuItem>
                 <MenuItem onClick={handleLogout}>Logout</MenuItem>
               </Menu>
             </div>

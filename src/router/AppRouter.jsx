@@ -16,6 +16,7 @@ import Profile from "../pages/Profile";
 import { AuthContext } from "../context/AuthContext";
 import { useContext } from "react";
 import Footer from "../components/Footer";
+import About from "../pages/About";
 
 const AppRouter = () => {
   const { currentUser } = useContext(AuthContext);
@@ -39,6 +40,7 @@ const AppRouter = () => {
           <Route path="/profile" element={<PrivateRouter />}>
             <Route path="/profile" element={<Profile />} />
           </Route>
+          <Route path="/about" element={<About />} />
         </Routes>
         <Footer />
       </BrowserRouter>

@@ -7,14 +7,18 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { AuthContext } from "../context/AuthContext";
 import { Box, Container } from "@mui/system";
-import { useFetch } from "../auth/firebase";
+import { deleteBlog, useFetch } from "../auth/firebase";
 import loading from "../assets/loading.gif";
 import { IconButton } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
-import { toastWarnNotify } from "../helpers/ToastNotify";
+// import { toastWarnNotify } from "../helpers/ToastNotify";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
+  const navigate = useNavigate();
+
   const { currentUser } = React.useContext(AuthContext);
   const { blogGet, isLoading } = useFetch();
 
@@ -72,9 +76,9 @@ export default function Profile() {
                     >
                       {item.content}
                     </Typography>
-                    {/* <Typography sx={{ fontSize: "0.7rem", fontWeight: "400" }}>
-                    Blog owner : {currentUser.displayName}
-                  </Typography> */}
+                    <Typography sx={{ fontSize: "0.7rem", fontWeight: "400" }}>
+                      Blog owner : {currentUser.displayName}
+                    </Typography>
                   </CardContent>
                   <CardActions>
                     <Container>
@@ -85,7 +89,7 @@ export default function Profile() {
                         <ChatBubbleOutlineIcon />
                       </IconButton>
                     </Container>
-                    <Button
+                    {/* <Button
                       size="small"
                       onClick={() => {
                         !currentUser &&
@@ -93,7 +97,13 @@ export default function Profile() {
                       }}
                     >
                       Detail
-                    </Button>
+                    </Button> */}
+                    {/* <Button
+                      size="small"
+                      onClick={() => deleteBlog(item.state.id, navigate)}
+                    >
+                      <DeleteIcon fontSize="small" /> Delete
+                    </Button> */}
                   </CardActions>
                 </Card>
               </Box>
