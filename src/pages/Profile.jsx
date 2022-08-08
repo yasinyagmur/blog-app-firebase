@@ -7,13 +7,12 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { AuthContext } from "../context/AuthContext";
 import { Box, Container } from "@mui/system";
-import { deleteBlog, useFetch } from "../auth/firebase";
+import { useFetch } from "../auth/firebase";
 import loading from "../assets/loading.gif";
 import { IconButton } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
-// import { toastWarnNotify } from "../helpers/ToastNotify";
-import DeleteIcon from "@mui/icons-material/Delete";
+import { toastWarnNotify } from "../helpers/ToastNotify";
 import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
@@ -89,21 +88,16 @@ export default function Profile() {
                         <ChatBubbleOutlineIcon />
                       </IconButton>
                     </Container>
-                    {/* <Button
+                    <Button
                       size="small"
                       onClick={() => {
+                        navigate(`/detail/${item.id}`, { state: item });
                         !currentUser &&
                           toastWarnNotify("Please log in to see detail");
                       }}
                     >
                       Detail
-                    </Button> */}
-                    {/* <Button
-                      size="small"
-                      onClick={() => deleteBlog(item.state.id, navigate)}
-                    >
-                      <DeleteIcon fontSize="small" /> Delete
-                    </Button> */}
+                    </Button>
                   </CardActions>
                 </Card>
               </Box>

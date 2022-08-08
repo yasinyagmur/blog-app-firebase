@@ -20,7 +20,7 @@ export default function Details() {
   const navigate = useNavigate();
   const item = useLocation();
   // console.log(item);
-  const { title, content, imgurl, email } = item.state;
+  const { title, content, imgurl, email, creative } = item.state;
   // console.log(email);
   const [ısEditClick, setIsEditClick] = useState(false);
   const [editTitle, setEditTitle] = useState("");
@@ -108,6 +108,9 @@ export default function Details() {
 
               <Typography variant="body2" color="text.secondary">
                 {content}
+              </Typography>
+              <Typography sx={{ fontSize: "0.7rem", fontWeight: "400" }}>
+                Blog owner : {creative}
               </Typography>
               {ısEditClick && (
                 <Box

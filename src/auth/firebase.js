@@ -130,6 +130,7 @@ export const AddBlog = (values) => {
     imgurl: values.imgUrl,
     content: values.content,
     email: auth.currentUser.email,
+    creative: auth.currentUser.displayName,
     // id: values.id,
   });
   toastSuccessNotify("New blog creation successful");

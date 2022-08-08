@@ -20,7 +20,8 @@ export default function BlogCard() {
   const { blogGet, isLoading } = useFetch();
   const { currentUser } = React.useContext(AuthContext);
 
-  // console.log(blogGet);
+  console.log(blogGet);
+  console.log(currentUser);
 
   return (
     <Container
@@ -78,9 +79,9 @@ export default function BlogCard() {
                   >
                     {item.content}
                   </Typography>
-                  {/* <Typography sx={{ fontSize: "0.7rem", fontWeight: "400" }}>
-                    Blog owner : {currentUser.displayName}
-                  </Typography> */}
+                  <Typography sx={{ fontSize: "0.7rem", fontWeight: "400" }}>
+                    Blog owner : {item.creative}
+                  </Typography>
                 </CardContent>
                 <CardActions>
                   <Container>
