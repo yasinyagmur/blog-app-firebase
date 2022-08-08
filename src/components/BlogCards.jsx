@@ -5,7 +5,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { Box, IconButton } from "@mui/material";
+import { Box, IconButton, TextField } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useNavigate } from "react-router-dom";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
@@ -14,21 +14,34 @@ import { useFetch } from "../auth/firebase";
 import loading from "../assets/loading.gif";
 import { toastWarnNotify } from "../helpers/ToastNotify";
 import { AuthContext } from "../context/AuthContext";
+import SearchComp from "./SearchComp";
 
 export default function BlogCard() {
   const navigate = useNavigate();
   const { blogGet, isLoading } = useFetch();
   const { currentUser } = React.useContext(AuthContext);
-
-  console.log(blogGet);
-  console.log(currentUser);
-
+  // console.log(blogGet);
+  // console.log(currentUser);
+  const [searchBlog, setSearchBlog] = React.useState();
+  console.log(searchBlog);
   return (
     <Container
       sx={{
         marginTop: "2rem",
       }}
     >
+      <TextField
+        sx={{ display: "block", margin: "auto", width: "25rem" }}
+        fullWidth
+        type="text"
+        id="text"
+        label="Type the block you want to search..."
+        name="text"
+        autoComplete="text"
+        autoFocus
+        onChange={(e) => setSearchBlog(e.target.value)}
+      />
+
       {isLoading ? (
         <Card
           sx={{
@@ -45,6 +58,14 @@ export default function BlogCard() {
             sx={{ margin: "auto", objectFit: "contain" }}
           />
         </Card>
+      ) : searchBlog ? (
+        blogGet
+          ?.filter((e) =>
+            e.title.toLowerCase().includes(searchBlog.toLowerCase())
+          )
+          .map((item, index) => {
+            return <SearchComp item={item} index={index} />;
+          })
       ) : (
         blogGet?.map((item, index) => {
           return (

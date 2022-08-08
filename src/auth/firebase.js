@@ -177,15 +177,4 @@ export const EditBlogCard = (uptadeBlog, id) => {
   toastSuccessNotify("Blog updated");
 
   return update(ref(db), updates);
-
-  // return update(ref(db, `blogapp` + id), {
-  //   title: editTitle,
-  //   imgurl: editImgUrl,
-  //   content: editContent,
-  // });
 };
-//! Search Blog
-// export const SearchBlogs = (searchValue) => {
-//   // console.log(searchValue);
-//   return searchValue;
-// };

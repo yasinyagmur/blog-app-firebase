@@ -10,9 +10,9 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 export default function Footer() {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="relative">
         <Toolbar>
-          <Typography sx={{ display: "flex", marginLeft: "1rem" }}>
+          <Typography sx={{ display: "", marginLeft: "1rem" }}>
             <Link
               href="https://github.com/yasinyagmur/blog-app-firebase"
               sx={{ color: "white", fontSize: "0.8rem" }}
