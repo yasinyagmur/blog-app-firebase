@@ -16,6 +16,8 @@ export default function Footer() {
             <Link
               href="https://github.com/yasinyagmur/blog-app-firebase"
               sx={{ color: "white", fontSize: "0.8rem" }}
+              target="_blank"
+              rel="noreferrer"
               underline="none"
             >
               <GitHubIcon />
@@ -26,6 +28,8 @@ export default function Footer() {
             <Link
               href="https://www.linkedin.com/in/yasinyagmur/"
               sx={{ color: "white", fontSize: "0.8rem" }}
+              target="_blank"
+              rel="noreferrer"
               underline="none"
             >
               <LinkedInIcon />
