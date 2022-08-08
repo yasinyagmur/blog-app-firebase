@@ -22,7 +22,7 @@ export default function Profile() {
   const { blogGet, isLoading } = useFetch();
 
   return (
-    <Container sx={{ height: "100vh", marginTop: "7rem" }}>
+    <Container sx={{ minHeight: "100vh", marginTop: "7rem" }}>
       {isLoading ? (
         <Card
           sx={{
