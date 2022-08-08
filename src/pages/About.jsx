@@ -16,7 +16,7 @@ export default function About() {
         display: "flex",
         justifyContent: "center",
         textAlign: "center",
-        margin: "7rem ",
+        marginTop: "7rem",
         height: "100vh",
       }}
     >
