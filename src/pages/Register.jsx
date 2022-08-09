@@ -13,7 +13,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import GoogleIcon from "@mui/icons-material/Google";
 import { createUser, signUpProvider } from "../auth/firebase";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -163,9 +163,11 @@ export default function Register() {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
+                <NavLink to="/login">
+                  <Link variant="body2">
+                    {"Already have an account? Login"}
+                  </Link>
+                </NavLink>
               </Grid>
             </Grid>
           </Box>
