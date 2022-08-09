@@ -30,17 +30,19 @@ export default function BlogCard() {
         marginTop: "2rem",
       }}
     >
-      <TextField
-        sx={{ display: "block", margin: "auto", width: "25rem" }}
-        fullWidth
-        type="text"
-        id="text"
-        label="Type the block you want to search..."
-        name="text"
-        autoComplete="text"
-        autoFocus
-        onChange={(e) => setSearchBlog(e.target.value)}
-      />
+      {currentUser && (
+        <TextField
+          sx={{ display: "block", margin: "auto", width: "25rem" }}
+          fullWidth
+          type="text"
+          id="text"
+          label="Type the block you want to search..."
+          name="text"
+          autoComplete="text"
+          autoFocus
+          onChange={(e) => setSearchBlog(e.target.value)}
+        />
+      )}
 
       {isLoading ? (
         <Card
