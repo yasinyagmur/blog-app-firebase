@@ -56,7 +56,7 @@ export default function BlogCard() {
             component="img"
             image={loading}
             height="500"
-            alt="green iguana"
+            alt="loading"
             sx={{ margin: "auto", objectFit: "contain" }}
           />
         </Card>
